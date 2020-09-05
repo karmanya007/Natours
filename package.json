@@ -1,0 +1,32 @@
+{
+	"name": "natours",
+	"version": "1.0.0",
+	"description": "Learning nodejs",
+	"main": "server.js",
+	"scripts": {
+		"dev": "nodemon server.js",
+		"production": "NODE_ENV=production node server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/karmanya007/Nators.git"
+	},
+	"keywords": [
+		"nodejs",
+		"express",
+		"mongodb",
+		"mongoose"
+	],
+	"author": "Karmanya Veer Sharma",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/karmanya007/Nators/issues"
+	},
+	"homepage": "https://github.com/karmanya007/Nators#readme",
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"morgan": "^1.10.0"
+	},
+	"devDependencies": {}
+}
