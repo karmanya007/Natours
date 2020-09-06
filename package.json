@@ -4,7 +4,7 @@
 	"description": "Learning nodejs",
 	"main": "server.js",
 	"scripts": {
-		"dev": "nodemon server.js",
+		"start": "nodemon server.js",
 		"production": "NODE_ENV=production node server.js"
 	},
 	"repository": {
@@ -26,6 +26,7 @@
 	"dependencies": {
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
+		"mongoose": "^5.10.3",
 		"morgan": "^1.10.0"
 	},
 	"devDependencies": {}
