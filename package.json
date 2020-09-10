@@ -5,7 +5,7 @@
 	"main": "server.js",
 	"scripts": {
 		"start": "nodemon server.js",
-		"production": "NODE_ENV=production node server.js",
+		"production": "NODE_ENV=production nodemon server.js",
 		"debug": "ndb server.js"
 	},
 	"repository": {
