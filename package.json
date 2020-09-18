@@ -6,7 +6,8 @@
 	"scripts": {
 		"start": "nodemon server.js",
 		"production": "NODE_ENV=production nodemon server.js",
-		"debug": "ndb server.js"
+		"debug": "ndb server.js",
+		"dev-data": "node ./dev-data/data/import-dev-data.js"
 	},
 	"repository": {
 		"type": "git",
@@ -26,6 +27,7 @@
 	"homepage": "https://github.com/karmanya007/Nators#readme",
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
+		"cookie-parser": "^1.4.5",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"express-mongo-sanitize": "^2.0.0",
@@ -36,6 +38,7 @@
 		"mongoose": "^5.10.3",
 		"morgan": "^1.10.0",
 		"nodemailer": "^6.4.11",
+		"pug": "^3.0.0",
 		"slugify": "^1.4.5",
 		"validator": "^13.1.1",
 		"xss-clean": "^0.1.1"
