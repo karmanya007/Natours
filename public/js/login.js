@@ -1,8 +1,11 @@
-const login = async (email, password) => {
+import axios from 'axios';
+import { showAlert } from './alert';
+
+export const login = async (email, password) => {
 	try {
 		const res = await axios({
 			method: 'post',
-			url: `http://192.168.1.7:8080/api/v1/users/login`,
+			url: `http://192.168.1.5:8080/api/v1/users/login`,
 			data: {
 				email: email,
 				password: password,
@@ -10,21 +13,25 @@ const login = async (email, password) => {
 		});
 
 		if (res.data.status === 'success') {
-			alert('Logged in successfully');
+			showAlert('success', 'Logged in successfully');
 			window.setTimeout(() => {
 				location.assign('/');
 			}, 1500);
 		}
-
-		console.log(res);
 	} catch (err) {
-		alert(err.response.data.message);
+		showAlert('error', err.response.data.message);
 	}
 };
 
-document.querySelector('.form').addEventListener('submit', (e) => {
-	e.preventDefault();
-	const email = document.getElementById('email').value;
-	const password = document.getElementById('password').value;
-	login(email, password);
-});
+export const logout = async () => {
+	try {
+		const res = await axios({
+			method: 'GET',
+			url: 'http://192.168.1.5:8080/api/v1/users/logout',
+		});
+
+		if (res.data.status === 'success') location.reload(true);
+	} catch (err) {
+		showAlert('error', 'Error logging out! Try again!');
+	}
+};
