@@ -19,7 +19,7 @@ exports.getCheckOutSession = catchAsync(async (req, res, next) => {
 		cancel_url: `${req.protocol}://${req.get('host')}/${tour.slug}`,
 		customer_email: req.user.email,
 		client_reference_id: req.params.tourId,
-		display_items: [
+		line_items: [
 			{
 				name: `${tour.name} Tour`,
 				description: tour.summary,
