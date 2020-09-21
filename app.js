@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -25,12 +26,16 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // 1) GLOBAL MIDDLEWARES
+// Implement CORS
+app.use(cors());
+app.options('*', cors());
+
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security HTTP headers
 app.use(helmet());
-app.use(
+/* app.use(
 	helmet.contentSecurityPolicy({
 		directives: {
 			defaultSrc: ["'self'", 'https:', 'http:', 'data:', 'ws:'],
@@ -44,6 +49,21 @@ app.use(
 				'https://*.stripe.com',
 				'https://*.cloudflare.com',
 			],
+			frameSrc: ["'self'", 'https://*.stripe.com'],
+			objectSrc: ["'none'"],
+			styleSrc: ["'self'", 'https:', 'unsafe-inline'],
+			upgradeInsecureRequests: [],
+		},
+	})
+); */
+
+app.use(
+	helmet.contentSecurityPolicy({
+		directives: {
+			defaultSrc: ["'self'"],
+			baseUri: ["'self'"],
+			fontSrc: ["'self'", 'https:', 'data:'],
+			scriptSrc: ["'self'", 'https://*.stripe.com'],
 			frameSrc: ["'self'", 'https://*.stripe.com'],
 			objectSrc: ["'none'"],
 			styleSrc: ["'self'", 'https:', 'unsafe-inline'],
