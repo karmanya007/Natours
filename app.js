@@ -47,6 +47,7 @@ app.use(
 			objectSrc: ["'none'"],
 			styleSrc: [
 				"'self'",
+				'https:',
 				'unsafe-hashes',
 				'sha256-2LsQpejoyTLfBAE8bzIvpZiyalNp3uIriW3eZ05/XRc=',
 			],
