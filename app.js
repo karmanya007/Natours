@@ -19,6 +19,8 @@ const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
 
+app.enable('trust proxy');
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -28,27 +30,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security HTTP headers
 app.use(helmet());
-/* app.use(
-		helmet.contentSecurityPolicy({
-			directives: {
-				defaultSrc: ["'self'", 'https:', 'http:', 'data:', 'ws:'],
-				baseUri: ["'self'"],
-				fontSrc: ["'self'", 'https:', 'data:'],
-				scriptSrc: [
-					"'self'",
-					'https:',
-					'http:',
-					'blob:',
-					'https://*.stripe.com',
-					'https://*.cloudflare.com',
-				],
-				frameSrc: ["'self'", 'https://*.stripe.com'],
-				objectSrc: ["'none'"],
-				styleSrc: ["'self'", 'https:', 'unsafe-inline'],
-				upgradeInsecureRequests: [],
-			},
-		})
-	); */
+app.use(
+	helmet.contentSecurityPolicy({
+		directives: {
+			defaultSrc: ["'self'", 'https:', 'http:', 'data:', 'ws:'],
+			baseUri: ["'self'"],
+			fontSrc: ["'self'", 'https:', 'data:'],
+			scriptSrc: [
+				"'self'",
+				'https:',
+				'http:',
+				'blob:',
+				'https://*.stripe.com',
+				'https://*.cloudflare.com',
+			],
+			frameSrc: ["'self'", 'https://*.stripe.com'],
+			objectSrc: ["'none'"],
+			styleSrc: ["'self'", 'https:', 'unsafe-inline'],
+			upgradeInsecureRequests: [],
+		},
+	})
+);
 
 // Dev logging
 if (process.env.NODE_ENV === 'development') {
