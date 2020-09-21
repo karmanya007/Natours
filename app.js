@@ -34,28 +34,26 @@ app.options('*', cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security HTTP headers
-// app.use(helmet());
-/* app.use(
+app.use(helmet());
+app.use(
 	helmet.contentSecurityPolicy({
 		directives: {
 			defaultSrc: ["'self'", 'https:', 'http:', 'data:', 'ws:'],
 			baseUri: ["'self'"],
 			fontSrc: ["'self'", 'https:', 'data:'],
-			scriptSrc: [
-				"'self'",
-				'https:',
-				'http:',
-				'blob:',
-				'https://*.stripe.com',
-				'https://*.cloudflare.com',
-			],
+			scriptSrc: ["'self'", 'https:', 'http:', 'blob:', 'https://*.stripe.com'],
 			frameSrc: ["'self'", 'https://*.stripe.com'],
 			objectSrc: ["'none'"],
-			styleSrc: ["'self'", 'https:', 'unsafe-inline'],
+			styleSrc: [
+				"'self'",
+				'https:',
+				'unsafe-hashes',
+				'sha256-2LsQpejoyTLfBAE8bzIvpZiyalNp3uIriW3eZ05/XRc=',
+			],
 			upgradeInsecureRequests: [],
 		},
 	})
-); */
+);
 
 /* app.use(
 	helmet.contentSecurityPolicy({
