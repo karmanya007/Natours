@@ -314,14 +314,14 @@ body {
 	-ms-flex-align: center;
 	align-items: center;
 }
-@media only screen and (max-width: 62.5em) {
+/* @media only screen and (max-width: 62.5em) {
 	.header {
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
 		-ms-flex-direction: column;
-		flex-direction: column;
+		flex-direction: column; 
 	}
-}
+} */
 .header__logo img {
 	height: 3.5rem;
 }
