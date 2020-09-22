@@ -46,13 +46,19 @@ exports.getTour = catchAsync(async (req, res, next) => {
 
 exports.getLoginForm = (req, res) => {
 	res.status(200).render('login', {
-		title: 'Log into your account',
+		title: '| Log into your account',
+	});
+};
+
+exports.getSignupForm = (req, res) => {
+	res.status(200).render('signup', {
+		title: '| Create your account',
 	});
 };
 
 exports.getAccount = (req, res) => {
 	res.status(200).render('account', {
-		title: 'Your account',
+		title: '| Your account',
 	});
 };
 
@@ -64,7 +70,7 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
 	const tours = await Tour.find({ _id: { $in: tourIDs } });
 
 	res.status(200).render('overview', {
-		title: 'My Tours',
+		title: '| My Tours',
 		tours,
 	});
 });
@@ -83,7 +89,7 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
 	);
 
 	res.status(200).render('account', {
-		title: 'Your account',
+		title: '| Your account',
 		user: updatedUser,
 	});
 });
