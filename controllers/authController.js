@@ -21,7 +21,7 @@ const createSendToken = (user, statusCode, req, res) => {
 			Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
 		),
 		httpOnly: true,
-		secure: req.secure || req.headers('x-forwarded-proto') === 'https',
+		/* secure: req.secure || req.headers('x-forwarded-proto') === 'https', */
 	});
 
 	user.password = undefined;
@@ -45,7 +45,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 		role: req.body.role,
 	});
 	const url = `${req.protocol}://${req.get('host')}/me`;
-	await new Email(newUser, url).sendWelcome();
+	await new Email(newUser, url, null).sendWelcome();
 
 	createSendToken(newUser, 201, req, res);
 });
@@ -176,7 +176,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 		const resetURL = `${req.protocol}://${req.get(
 			'host'
 		)}/api/v1/users/resetPassword/${resetToken}`;
-		await new Email(user, resetURL).sendPasswordReset();
+		await new Email(user, resetURL, null).sendPasswordReset();
 
 		res.status(200).json({
 			status: 'success',

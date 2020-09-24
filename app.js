@@ -40,40 +40,6 @@ app.use(
 		contentSecurityPolicy: false,
 	})
 );
-/* app.use(
-	helmet.contentSecurityPolicy({
-		directives: {
-			defaultSrc: ["'self'", 'https:', 'http:', 'data:', 'ws:'],
-			baseUri: ["'self'"],
-			fontSrc: ["'self'", 'https:', 'data:'],
-			scriptSrc: ["'self'", 'https:', 'http:', 'blob:', 'https://*.stripe.com'],
-			frameSrc: ["'self'", 'https://*.stripe.com'],
-			objectSrc: ["'none'"],
-			styleSrc: [
-				"'self'",
-				'https:',
-				'unsafe-hashes',
-				'sha256-2LsQpejoyTLfBAE8bzIvpZiyalNp3uIriW3eZ05/XRc=',
-			],
-			upgradeInsecureRequests: [],
-		},
-	})
-); */
-
-/* app.use(
-	helmet.contentSecurityPolicy({
-		directives: {
-			defaultSrc: ["'self'"],
-			baseUri: ["'self'"],
-			fontSrc: ["'self'", 'https:', 'data:'],
-			scriptSrc: ["'self'", 'https://*.stripe.com'],
-			frameSrc: ["'self'", 'https://*.stripe.com'],
-			objectSrc: ["'none'"],
-			styleSrc: ["'self'", 'https:', 'unsafe-inline'],
-			upgradeInsecureRequests: [],
-		},
-	})
-); */
 
 // Dev logging
 if (process.env.NODE_ENV === 'development') {
