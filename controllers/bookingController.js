@@ -51,7 +51,7 @@ exports.getCheckOutSession = catchAsync(async (req, res, next) => {
 	res.redirect(req.originalUrl.split('?')[0]);
 }); */
 
-const createBookingCheckout = async (session) => {
+const createBookingCheckout = catchAsync(async (session) => {
 	const newUser = await User.findOne({
 		email: session.data.object.customer_email,
 	});
@@ -60,9 +60,9 @@ const createBookingCheckout = async (session) => {
 	const price = session.data.object.amount_total / 100;
 	await Booking.create({ tour, user, price });
 
-	const url = `${req.protocol}://${req.get('host')}/me`;
+	const url = `https://natourify.herokuapp.com/me`;
 	await new Email(newUser, url, session).sendInvoice();
-};
+});
 
 exports.webhookCheckout = (req, res, next) => {
 	const signature = req.headers['stripe-signature'];
