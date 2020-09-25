@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { login, logout, signup } from './login';
+import { login, logout, signup, forgotPassword, resetPassword } from './login';
 import { displayMap } from './mapbox';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
@@ -9,6 +9,8 @@ import { showAlert } from './alert';
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
 const signupForm = document.querySelector('.form--signup');
+const forgetPasswordForm = document.querySelector('.form--forget');
+const resetPasswordForm = document.querySelector('.form--reset');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
@@ -35,6 +37,13 @@ if (signupForm) {
 		const password = document.getElementById('password').value;
 		const passwordConfirm = document.getElementById('password-confirm').value;
 		signup(name, email, password, passwordConfirm);
+	});
+}
+if (forgetPasswordForm) {
+	forgetPasswordForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const email = document.getElementById('email').value;
+		forgotPassword(email);
 	});
 }
 
@@ -69,6 +78,16 @@ if (userPasswordForm) {
 		document.getElementById('password-current').value = '';
 		document.getElementById('password').value = '';
 		document.getElementById('password-confirm').value = '';
+	});
+}
+if (resetPasswordForm) {
+	resetPasswordForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const password = document.getElementById('password').value;
+		const passwordConfirm = document.getElementById('password-confirm').value;
+		const resetToken = resetPasswordForm.dataset.resettoken;
+		console.log(resetToken);
+		resetPassword(password, passwordConfirm, resetToken);
 	});
 }
 

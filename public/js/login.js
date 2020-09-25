@@ -65,3 +65,44 @@ export const signup = async (name, email, password, passwordConfirm) => {
 		showAlert('error', err.response.data.message);
 	}
 };
+
+export const forgotPassword = async (email) => {
+	try {
+		const res = await axios({
+			method: 'POST',
+			url: `/api/v1/users/forgotPassword`,
+			data: {
+				email,
+			},
+		});
+		if (res.data.status === 'success') {
+			showAlert('success', 'Check your email to reset your password');
+			window.setTimeout(() => {
+				location.assign('/');
+			}, 1500);
+		}
+	} catch (err) {
+		showAlert('error', err.response.data.message);
+	}
+};
+
+export const resetPassword = async (password, passwordConfirm, resetToken) => {
+	try {
+		const res = await axios({
+			method: 'PATCH',
+			url: `/api/v1/users/resetPassword/${resetToken}`,
+			data: {
+				password,
+				passwordConfirm,
+			},
+		});
+		if (res.data.status === 'success') {
+			showAlert('success', 'Password reset successfully!');
+			window.setTimeout(() => {
+				location.assign('/me');
+			}, 1500);
+		}
+	} catch (err) {
+		showAlert('error', err.response.data.message);
+	}
+};

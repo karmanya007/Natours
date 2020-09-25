@@ -8,16 +8,18 @@ module.exports = class Email {
 		this.firstName = user.name.split(' ')[0];
 		this.url = url;
 		this.from = `Karmanya Veer Sharma <${process.env.EMAIL_FROM}>`;
-		this.id = event.data.object.id;
-		this.payment_method = event.data.object.payment_method_types[0];
-		this.price = event.data.object.amount_total / 100;
-		this.tour = event.data.object.cancel_url
-			.slice(32)
-			.toUpperCase()
-			.split('-')
-			.join(' ');
-		this.createdAt = new Date(event.created * 1000).toLocaleString();
-		this.paymentStatus = event.data.object.payment_status;
+		if (event) {
+			this.id = event.data.object.id;
+			this.payment_method = event.data.object.payment_method_types[0];
+			this.price = event.data.object.amount_total / 100;
+			this.tour = event.data.object.cancel_url
+				.slice(32)
+				.toUpperCase()
+				.split('-')
+				.join(' ');
+			this.createdAt = new Date(event.created * 1000).toLocaleString();
+			this.paymentStatus = event.data.object.payment_status;
+		}
 	}
 
 	newTransport() {
