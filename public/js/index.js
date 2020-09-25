@@ -86,7 +86,6 @@ if (resetPasswordForm) {
 		const password = document.getElementById('password').value;
 		const passwordConfirm = document.getElementById('password-confirm').value;
 		const resetToken = resetPasswordForm.dataset.resettoken;
-		console.log(resetToken);
 		resetPassword(password, passwordConfirm, resetToken);
 	});
 }
