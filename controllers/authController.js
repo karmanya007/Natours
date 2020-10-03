@@ -14,14 +14,16 @@ const signToken = (id) => {
 };
 
 const createSendToken = (user, statusCode, req, res) => {
+	let secure;
 	const token = signToken(user._id);
-	console.log('In createSendToken fn!!');
+	if (process.env.NODE_ENV != 'development')
+		secure = req.secure || req.headers('x-forwarded-proto') === 'https';
 	res.cookie('jwt', token, {
 		expires: new Date(
 			Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
 		),
 		httpOnly: true,
-		secure: req.secure || req.headers('x-forwarded-proto') === 'https',
+		secure: secure,
 	});
 
 	user.password = undefined;

@@ -38,7 +38,7 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
 	req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
 
 	await sharp(req.file.buffer)
-		.resize(300, 300)
+		.resize(500, 500)
 		.toFormat('jpeg')
 		.jpeg({ quality: 50 })
 		.toFile(`public/img/users/${req.file.filename}`);
