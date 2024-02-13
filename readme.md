@@ -1,6 +1,6 @@
 # Natourify
 
-A dynamic website using pug templates with a backend made in nodejs(Expressjs) consisting of authorization, emailing, user-roles, review-system and a booking system (Payments using stripe). [Deployed version](https://natourify.herokuapp.com/)
+A dynamic website using pug templates with a backend made in nodejs(Expressjs) consisting of authorization, emailing, user-roles, review-system and a booking system (Payments using stripe). [Deployed version](https://nautorify.onrender.com/)
 
 ---
 
